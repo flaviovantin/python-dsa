@@ -1,2 +1,2 @@
 # python-dsa
-Data Structures &amp; lgorithms in Python 3
+Data Structures &amp; Algorithms in Python 3
