@@ -43,5 +43,5 @@ class LinkedList:
         pass
 
 
-my_linked_list = LinkedList(4)
+my_linked_list = LinkedList(3)
 
