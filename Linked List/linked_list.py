@@ -43,5 +43,6 @@ class LinkedList:
         pass
 
 
-my_linked_list = LinkedList(3)
+# (4)--> (23)--> (7)--> null
+my_linked_list = LinkedList(4)
 
