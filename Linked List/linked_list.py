@@ -3,7 +3,7 @@ class Node:
 
     def __init__(self, value):
         """ {'value': value, 'next': None} """
-        self.value = None if value is None else value
+        self.value = value
         self.next = None
 
 
@@ -22,11 +22,17 @@ class LinkedList:
     def print_list(self):
         """ O(n) """
         n = self.head
-        print('Head--> ' + str(self.head.value) if self.head is not None else 'Head--> None')
+        if self.head is not None:
+            print('Head--> ' + str(self.head.value))
+        else:
+            print('Head--> None')
         while n is not None:
             print(n.value)
             n = n.next
-        print('Tail--> ' + str(self.tail.value) if self.tail is not None else 'Tail--> None')
+        if self.tail is not None:
+            print('Tail--> ' + str(self.tail.value))
+        else:
+            print('Tail--> None')
         print('Length: ' + str(self.length) + '\n')
 
     def append(self, value):
@@ -66,13 +72,14 @@ class LinkedList:
         at the beginning (prepend) or at the end (append): O(1)
         in the middle: O(n)
         """
+        # TODO implement the index correctly
         if index == 0:
             self.prepend(value)
         elif index == self.length-1:
             self.append(value)
         else:
+            # TODO implement it
             node = Node(value)
-
 
     def lookup(self, value):
         """ O(n) """
@@ -83,9 +90,9 @@ class LinkedList:
 #    |  |
 #    V  V
 #    None
-my_linked_list = LinkedList()
-my_linked_list.print_list()
-#
+# my_linked_list = LinkedList()
+# my_linked_list.print_list()
+# #
 # my_linked_list.prepend(22)
 # my_linked_list.print_list()
 
@@ -93,8 +100,8 @@ my_linked_list.print_list()
 #   |              |
 #   V              V
 #  (4)--> (23)--> (7)--> null
-# my_linked_list = LinkedList(4)
-# my_linked_list.print_list()
+my_linked_list = LinkedList(4)
+my_linked_list.print_list()
 
 my_linked_list.append(23)
 my_linked_list.print_list()
@@ -103,4 +110,10 @@ my_linked_list.append(7)
 my_linked_list.print_list()
 
 my_linked_list.prepend(11)
+my_linked_list.print_list()
+
+my_linked_list.insert(0, 15)  # TODO o que deveria ser o index? 0 ou 1
+my_linked_list.print_list()
+
+my_linked_list.insert(6, 15)
 my_linked_list.print_list()
