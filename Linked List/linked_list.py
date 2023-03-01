@@ -47,7 +47,25 @@ class LinkedList:
 
     def pop(self):
         """ O(n) """
-        pass
+        if self.length == 0:
+            return None
+        elif self.length == 1:
+            temp = self.head.value
+            self.head = None
+            self.tail = None
+            self.length = 0
+            return temp
+        else:
+            n = self.head
+            temp = None
+            while n is not None:
+                if n.next is not None:
+                    self.tail = n
+                temp = n.value
+                n = n.next
+            self.tail.next = None
+            self.length -= 1
+            return temp
 
     def prepend(self, value):
         """ O(1) """
@@ -90,23 +108,23 @@ class LinkedList:
 #    |  |
 #    V  V
 #    None
-# my_linked_list = LinkedList()
-# my_linked_list.print_list()
-# #
-# my_linked_list.prepend(22)
-# my_linked_list.print_list()
+my_linked_list = LinkedList()
+my_linked_list.print_list()
+
+print('>> Removed: ' + str(my_linked_list.pop()))
+my_linked_list.print_list()
 
 #  Head           Tail
 #   |              |
 #   V              V
 #  (4)--> (23)--> (7)--> null
-my_linked_list = LinkedList(4)
+my_linked_list.append(4)
 my_linked_list.print_list()
 
 my_linked_list.append(23)
 my_linked_list.print_list()
 
-my_linked_list.append(7)
+my_linked_list.prepend(22)
 my_linked_list.print_list()
 
 my_linked_list.prepend(11)
@@ -115,5 +133,24 @@ my_linked_list.print_list()
 my_linked_list.insert(0, 15)  # TODO o que deveria ser o index? 0 ou 1
 my_linked_list.print_list()
 
-my_linked_list.insert(6, 15)
+# my_linked_list.insert(6, 16)
+# my_linked_list.print_list()
+
+print('>> Removed: ' + str(my_linked_list.pop()))
+my_linked_list.print_list()
+
+print('>> Removed: ' + str(my_linked_list.pop()))
+my_linked_list.print_list()
+
+print('>> Removed: ' + str(my_linked_list.pop()))
+my_linked_list.print_list()
+
+print('>> Removed: ' + str(my_linked_list.pop()))
+my_linked_list.print_list()
+
+print('>> Removed: ' + str(my_linked_list.pop()))
+my_linked_list.print_list()
+
+my_linked_list.append(9)
+my_linked_list.append(21)
 my_linked_list.print_list()
