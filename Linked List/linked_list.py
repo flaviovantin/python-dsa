@@ -70,13 +70,44 @@ class LinkedList:
     def prepend(self, value):
         """ O(1) """
         node = Node(value)
-        if self.head is None:
+        if self.length == 0:
             self.head = node
             self.tail = node
         else:
             node.next = self.head
             self.head = node
         self.length += 1
+
+    def pop_first(self):
+        """ O(1) """
+        if self.length == 0:
+            return None
+        elif self.length == 1:
+            temp = self.head.value
+            self.head = None
+            self.tail = None
+            self.length = 0
+            return temp
+        else:
+            temp = self.head.value
+            self.head.next = None
+            self.head = self.tail
+            self.length -= 1
+            return temp
+
+    def get(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        elif self.length == 1:
+            return self.head.value
+        else:
+            count = 0
+            n = self.head
+            while n is not None:
+                if count == index:
+                    return n.value
+                count += 1
+                n = n.next
 
     def remove(self, index, value):
         """
@@ -117,7 +148,7 @@ my_linked_list.print_list()
 #  Head           Tail
 #   |              |
 #   V              V
-#  (4)--> (23)--> (7)--> null
+#  (22)--> (4)--> (23)--> null
 my_linked_list.append(4)
 my_linked_list.print_list()
 
