@@ -51,7 +51,7 @@ class LinkedList:
         if self.length == 0:
             return None
         elif self.length == 1:
-            temp = self.head.value
+            temp = self.head
             self.head = None
             self.tail = None
             self.length = 0
@@ -62,7 +62,7 @@ class LinkedList:
             while n is not None:
                 if n.next is not None:
                     self.tail = n
-                temp = n.value
+                temp = n
                 n = n.next
             self.tail.next = None
             self.length -= 1
@@ -85,13 +85,13 @@ class LinkedList:
         if self.length == 0:
             return None
         elif self.length == 1:
-            temp = self.head.value
+            temp = self.head
             self.head = None
             self.tail = None
             self.length = 0
             return temp
         else:
-            temp = self.head.value
+            temp = self.head
             self.head.next = None
             self.head = self.tail
             self.length -= 1
@@ -139,7 +139,7 @@ class LinkedList:
             n.next = temp.next
             temp.next = None
             self.length -= 1
-            return temp.value
+            return temp
 
     def insert(self, index, value):
         """
