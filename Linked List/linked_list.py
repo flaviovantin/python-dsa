@@ -44,6 +44,7 @@ class LinkedList:
             self.tail.next = node
         self.tail = node
         self.length += 1
+        return True
 
     def pop(self):
         """ O(n) """
@@ -77,6 +78,7 @@ class LinkedList:
             node.next = self.head
             self.head = node
         self.length += 1
+        return True
 
     def pop_first(self):
         """ O(1) """
@@ -96,39 +98,67 @@ class LinkedList:
             return temp
 
     def get(self, index):
+        """ O(n) """
         if index < 0 or index >= self.length:
             return None
         elif self.length == 1:
-            return self.head.value
+            return self.head
         else:
             count = 0
             n = self.head
             while n is not None:
                 if count == index:
-                    return n.value
+                    return n
                 count += 1
                 n = n.next
 
-    def remove(self, index, value):
+    def set(self, index, value):
+        """ O(n) """
+        if index < 0 or index >= self.length:
+            return False
+        node = self.get(index)
+        if node:
+            node.value = value
+            return True
+        return False
+
+    def remove(self, index):
         """
         at the beginning: O(1)
         in the middle or at the end (pop): O(n)
         """
-        pass
+        if index < 0 or index >= self.length:
+            return None
+        if index == 0:
+            return self.pop_first()
+        if index == self.length-1:
+            return self.pop()
+        else:
+            n = self.get(index-1)
+            temp = n.next
+            n.next = temp.next
+            temp.next = None
+            self.length -= 1
+            return temp.value
 
     def insert(self, index, value):
         """
         at the beginning (prepend) or at the end (append): O(1)
         in the middle: O(n)
         """
-        # TODO implement the index correctly
+        if index < 0 or index > self.length:
+            return False
         if index == 0:
-            self.prepend(value)
-        elif index == self.length-1:
-            self.append(value)
+            return self.prepend(value)
+        if index == self.length:
+            return self.append(value)
         else:
-            # TODO implement it
             node = Node(value)
+            n = self.get(index-1)
+            n.next = node
+            node.next = n
+            self.length += 1
+            return True
 
     def lookup(self, value):
         """ O(n) """
@@ -161,11 +191,11 @@ my_linked_list.print_list()
 my_linked_list.prepend(11)
 my_linked_list.print_list()
 
-my_linked_list.insert(0, 15)  # TODO o que deveria ser o index? 0 ou 1
+my_linked_list.insert(0, 15)
 my_linked_list.print_list()
 
-# my_linked_list.insert(6, 16)
-# my_linked_list.print_list()
+my_linked_list.insert(5, 16)
+my_linked_list.print_list()
 
 print('>> Removed: ' + str(my_linked_list.pop()))
 my_linked_list.print_list()
