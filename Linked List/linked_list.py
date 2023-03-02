@@ -160,11 +160,7 @@ class LinkedList:
             return True
 
     def reverse(self):
-        # if self.length == 0:
-        #     return False
-        # if self.length == 1:
-        #     return False
-        # else:
+        """ O(n) """
         n = self.head
         self.head = self.tail
         self.tail = n
@@ -174,12 +170,15 @@ class LinkedList:
             n.next = before
             before = n
             n = after
-            # return True
-
 
     def lookup(self, value):
-        """ O(n) """
-        pass
+        """ O(n^2) """
+        if self.length == 0:
+            return None
+        for i in range(self.length):
+            n = self.get(i)
+            if n.value == value:
+                return n
 
 
 #  Head/Tail

@@ -222,6 +222,21 @@ class LinkedListTest(unittest.TestCase):
         self.assertEqual(my_linked_list.head.value, 0)
         self.assertEqual(my_linked_list.tail.value, 2)
 
+    def test_lookup(self):
+        my_linked_list = LinkedList()
+        node = my_linked_list.lookup(10)
+        self.assertIsNone(node)
+        my_linked_list.append(34)
+        my_linked_list.append(9)
+        my_linked_list.append(48)
+        my_linked_list.append(15)
+        my_linked_list.append(4)
+        my_linked_list.append(82)
+        my_linked_list.append(55)
+        self.assertEqual(my_linked_list.length, 7)
+        node = my_linked_list.lookup(4)
+        self.assertEqual(node.value, 4)
+
     def test_all(self):
         my_linked_list = LinkedList()
         my_linked_list.append(33)
