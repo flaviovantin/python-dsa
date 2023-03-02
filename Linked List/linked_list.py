@@ -133,13 +133,12 @@ class LinkedList:
             return self.pop_first()
         if index == self.length-1:
             return self.pop()
-        else:
-            n = self.get(index-1)
-            temp = n.next
-            n.next = temp.next
-            temp.next = None
-            self.length -= 1
-            return temp
+        n = self.get(index-1)
+        temp = n.next
+        n.next = temp.next
+        temp.next = None
+        self.length -= 1
+        return temp
 
     def insert(self, index, value):
         """
@@ -159,6 +158,24 @@ class LinkedList:
             node.next = n
             self.length += 1
             return True
+
+    def reverse(self):
+        # if self.length == 0:
+        #     return False
+        # if self.length == 1:
+        #     return False
+        # else:
+        n = self.head
+        self.head = self.tail
+        self.tail = n
+        before = None
+        for _ in range(self.length):
+            after = n.next
+            n.next = before
+            before = n
+            n = after
+            # return True
+
 
     def lookup(self, value):
         """ O(n) """
@@ -214,4 +231,16 @@ my_linked_list.print_list()
 
 my_linked_list.append(9)
 my_linked_list.append(21)
+my_linked_list.print_list()
+
+my_linked_list.reverse()
+my_linked_list.print_list()
+
+my_linked_list.append(99)
+my_linked_list.print_list()
+
+my_linked_list.reverse()
+my_linked_list.print_list()
+
+my_linked_list.pop()
 my_linked_list.print_list()
